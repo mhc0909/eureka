@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: eureka
+eureka:
+  server:
+    enable-self-preservation: false       # 关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 60000  # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+  client:
+    fetch-registry: true  
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+    service-url: 
+       defaultZone: http://127.0.0.1:8081/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-components: ALWAYS
